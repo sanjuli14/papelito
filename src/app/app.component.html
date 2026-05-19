@@ -115,6 +115,16 @@
         </div>
       }
     </div>
+    <div class="sponsors">
+      <div class="sponsors-label">SPONSORS</div>
+      <div class="sponsors-list">
+        <span class="sponsor">Soccer Drip Jersey</span>
+        <span class="sponsor-dot"></span>
+        <span class="sponsor">The Avilas Door</span>
+        <span class="sponsor-dot"></span>
+        <span class="sponsor">AAinnova</span>
+      </div>
+    </div>
     <div class="cam-area">
       <div class="cam-placeholder">
         <svg
@@ -172,6 +182,30 @@
           Revelar
         </button>
       </div>
+    </div>
+  </div>
+}
+
+@if (celebracion(); as c) {
+  <div class="celebracion-overlay" (click)="celebracion.set(null)">
+    <div class="celebracion-contenido" [class.premio-gold]="c.premio === 50">
+      <div class="celebracion-icono">
+        {{ c.premio === 0 ? "😅" : c.premio === 50 ? "🔥" : "🎉" }}
+      </div>
+      <div class="celebracion-jugador">{{ c.nombre }}</div>
+      <div class="celebracion-premio">
+        @if (c.premio === 0) {
+          <span class="vacio-texto">¡Se salvó! Sin premio 😅</span>
+        } @else {
+          <span
+            >Ha ganado
+            <span class="monto-destacado">${{ c.premio }}</span></span
+          >
+        }
+      </div>
+      @if (c.premio === 50) {
+        <div class="celebracion-mayor">¡PREMIO MAYOR!</div>
+      }
     </div>
   </div>
 }

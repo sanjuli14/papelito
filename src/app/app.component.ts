@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   editandoRanking = signal<{ nombre: string; total_ganado: number } | null>(null);
   editValor = signal(0);
 
+  celebracion = signal<{ nombre: string; premio: number } | null>(null);
   loading = signal(true);
 
   ngOnInit() {
@@ -62,9 +63,13 @@ export class AppComponent implements OnInit {
     }
     this.errorMsg.set('');
     this.revelandoId.set(this.papelIdSeleccionado());
-    await this.tableroService.revelarPapel(this.papelIdSeleccionado(), nombre);
+    const papel = await this.tableroService.revelarPapel(this.papelIdSeleccionado(), nombre);
     this.revelandoId.set(null);
     this.cerrarModal();
+    if (papel) {
+      this.celebracion.set({ nombre, premio: papel.premio });
+      setTimeout(() => this.celebracion.set(null), 4500);
+    }
   }
 
   toggleAdmin() {
