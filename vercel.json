@@ -1,0 +1,11 @@
+{
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/el_papelito/browser",
+  "framework": "angular",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
